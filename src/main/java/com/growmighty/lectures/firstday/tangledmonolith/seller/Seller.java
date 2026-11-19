@@ -1,15 +1,12 @@
 package com.growmighty.lectures.firstday.tangledmonolith.seller;
 
-import com.growmighty.lectures.firstday.tangledmonolith.product.Product;
-import com.growmighty.lectures.firstday.tangledmonolith.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
+@Getter
 @Table(name = "sellers")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Seller {
@@ -17,16 +14,12 @@ public class Seller {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "seller")
-    private List<Product> products = new ArrayList<>();
+    @Column(name = "user_id")
+    private Long userId;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    public static Seller create(User user) {
+    public static Seller create(Long userId) {
         Seller seller = new Seller();
-        seller.user = user;
+        seller.userId = userId;
         
         return seller;
     }
