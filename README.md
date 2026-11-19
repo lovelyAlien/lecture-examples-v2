@@ -1,3 +1,9 @@
+# 📓 과제 노트 (기록 · 질문)
+
+→ [HOMEWORK_NOTES.md](HOMEWORK_NOTES.md)
+
+---
+
 # 📝 과제 HW01 — 나머지 도메인 연관관계 끊기
 
 | 항목 | 내용 |
