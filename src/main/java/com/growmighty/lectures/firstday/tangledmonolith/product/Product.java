@@ -46,6 +46,10 @@ public class Product {
             throw new IllegalStateException("재고가 부족합니다. product=" + this.name);
         }
 
+        if(quantity < 1) {
+            throw new IllegalArgumentException("재고 감소 수량은 1 이상이어야 합니다. product=" + this.name);
+        }
+
         this.stockQuantity = (this.stockQuantity - quantity);
     }
 }

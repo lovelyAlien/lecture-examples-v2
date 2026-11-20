@@ -25,7 +25,9 @@ public class CartItem {
     @Column(nullable = false)
     private Integer quantity;
 
-    public static CartItem create(Long productId, int quantity) {
+    static CartItem create(Long productId, int quantity) {
+
+        validateQuantity(quantity);
         CartItem cartItem = new CartItem();
         cartItem.productId = productId;
         cartItem.quantity = quantity;
@@ -34,5 +36,21 @@ public class CartItem {
 
     void assignCart(Cart cart) {
         this.cart = cart;
+    }
+
+    void increase(int amount) {                 // Cart의 합산용
+        validateQuantity(amount);
+        this.quantity += amount;
+    }
+
+    void changeQuantity(int quantity) {         // Cart.changeQuantity용
+        validateQuantity(quantity);
+        this.quantity = quantity;
+    }
+
+    private static void validateQuantity(int quantity) {
+        if (quantity < 1) {
+            throw new IllegalArgumentException("수량은 1 이상이어야 합니다: " + quantity);
+        }
     }
 }
